@@ -17,13 +17,15 @@ img2 = cv2.imread('slike/tijaImage.png', 1)
 img = cv2.imread('slike/natureSpot.png', 1)
 img2RGB = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
 img2RGB = cv2.cvtColor(img2RGB, cv2.COLOR_BGR2GRAY)
-# img2RGB = cv2.GaussianBlur(img2RGB, (5, 5), 0)
+img2RGB = cv2.GaussianBlur(img2RGB, (5, 5), 0)
 
 
 def my_roberts(slika):
     # img = cv2.cvtColor(slika, cv2.COLOR_BGR2GRAY)
     vertical = cv2.filter2D(slika, -1, roberts_cross_v)
     horizontal = cv2.filter2D(slika, -1, roberts_cross_h)
+    if (img2RGB):
+        print("image read corectly")
 
     combine = cv2.addWeighted(vertical, 0.5, horizontal, 0.5, 0)
     return combine * 3
@@ -55,9 +57,7 @@ def my_sobel(slika):
 def canny2(slika, sp_prag, zg_prag):
     lower = sp_prag
     upper = zg_prag
-
     Cannyimage = cv2.Canny(slika, lower, upper)
-
     return Cannyimage
 
 # changes contrast alpha = contrast, beta = brightness
