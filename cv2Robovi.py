@@ -80,3 +80,10 @@ def canny2(slika, sp_prag, zg_prag):
     Cannyimage = cv2.Canny(slika, lower, upper)
 
     return Cannyimage
+
+
+def spremeni_kontrast(slika, alfa, beta):
+    print("alfa je ", alfa)
+    slika = cv2.multiply(slika, alfa)
+    slika = cv2.add(slika, beta)
+    return slika
