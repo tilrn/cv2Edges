@@ -23,7 +23,7 @@ img2 = cv2.imread('slike/tijaImage.png', 1)
 img = cv2.imread('slike/natureSpot.png', 1)
 img2RGB = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
 img2RGB = cv2.cvtColor(img2RGB, cv2.COLOR_BGR2GRAY)
-img2RGB = cv2.GaussianBlur(img2RGB, (5, 5), 0)
+# img2RGB = cv2.GaussianBlur(img2RGB, (5, 5), 0)
 
 # img = cv2.imread('Uvod/test.png', 1)
 
@@ -85,6 +85,7 @@ def canny2(slika, sp_prag, zg_prag):
 
 def spremeni_kontrast(slika, alfa, beta):
     print("alfa je ", alfa)
+    print("beta je ", beta)
     slika = cv2.multiply(slika, alfa)
     slika = cv2.add(slika, beta)
     return slika
@@ -107,20 +108,20 @@ def get():
     sobel = my_sobel(contrastImage)
     sobelNormal = my_sobel(img2RGB)
     # canny
-    canny = canny2(contrastImage, 100, 100)
+    canny = canny2(contrastImage, 10, 10)
     cannyNormal = canny2(img2, 100, 100)
 
     # izpisi
     cv2.imshow("Normal Roberts", myRobertsNormal)
     cv2.imshow("tempered Roberts", myRoberts)
-    cv2.imshow("Normal Prewitt", myPrewittNormal)
-    cv2.imshow("tempered Prewitt", myPrewitt)
+    # cv2.imshow("Normal Prewitt", myPrewittNormal)
+    # cv2.imshow("tempered Prewitt", myPrewitt)
 
-    cv2.imshow("Normal Sobel", sobelNormal)
-    cv2.imshow("Tempered Sobel", sobel)
+    # cv2.imshow("Normal Sobel", sobelNormal)
+    # cv2.imshow("Tempered Sobel", sobel)
 
-    cv2.imshow("Normal Canny", cannyNormal)
-    cv2.imshow("Tempered Canny", canny)
+    # cv2.imshow("Normal Canny", cannyNormal)
+    # cv2.imshow("Tempered Canny", canny)
     cv2.waitKey(0)
 
 
