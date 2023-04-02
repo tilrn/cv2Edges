@@ -107,8 +107,8 @@ def get():
 
 tink = tk.Tk()
 tink.title("Adjust settings")
-tink.configure(width=500, height=300)
-tink.configure(bg='lightgray')
+tink.configure(width=400, height=300)
+tink.configure(bg='dark')
 brightnes = DoubleVar()
 contrast = DoubleVar()
 scale = Scale(tink, from_=100, to=-100, variable=brightnes,
