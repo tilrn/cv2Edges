@@ -89,6 +89,40 @@ def spremeni_kontrast(slika, alfa, beta):
     return slika
 
 
+def get():
+    brightnes2 = brightnes.get()
+    contrast2 = contrast.get()
+    brightnes3 = int(brightnes2)
+    contrast3 = int(contrast2)
+    contrastImage = spremeni_kontrast(img2RGB, 0.5, brightnes3)
+
+    # my_Roberts
+    myRoberts = my_roberts(contrastImage)
+    myRobertsNormal = my_roberts(img2RGB)
+    # my_prewitt
+    myPrewitt = my_prewitt(contrastImage)
+    myPrewittNormal = my_prewitt(img2RGB)
+    # my_sobel
+    sobel = my_sobel(contrastImage)
+    sobelNormal = my_sobel(img2RGB)
+    # canny
+    canny = canny2(contrastImage, 100, 100)
+    cannyNormal = canny2(img2, 100, 100)
+
+    # izpisi
+    # cv2.imshow("Normal Roberts", myRobertsNormal)
+    # cv2.imshow("tempered Roberts", myRoberts)
+    # cv2.imshow("Normal Prewitt", myPrewittNormal)
+    # cv2.imshow("tempered Prewitt", myPrewitt)
+
+    # cv2.imshow("Normal Sobel", sobelNormal)
+    # cv2.imshow("Tempered Sobel", sobel)
+
+    cv2.imshow("Normal Canny", cannyNormal)
+    cv2.imshow("Tempered Canny", canny)
+    cv2.waitKey(0)
+
+
 tink = tk.Tk()
 tink.title("Adjust settings")
 tink.configure(width=500, height=300)
