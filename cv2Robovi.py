@@ -1,11 +1,8 @@
 from curses import echo
 from http.client import IM_USED
 from math import floor
-import os
 from re import S
-import sys
 from time import sleep
-import time
 import cv2
 import numpy as np
 import tkinter as tk
@@ -39,7 +36,7 @@ def my_prewitt(slika):
 
     img_x = cv2.filter2D(slika, -1, x)
     img_y = cv2.filter2D(slika, -1, y)
-
+    # to display x any y edge detection
     combine = np.concatenate((img_x, img_y), axis=1)
     return combine * 3
 
@@ -51,7 +48,7 @@ def my_sobel(slika):
 
     img_x = cv2.filter2D(slika, -1, x)
     img_y = cv2.filter2D(slika, -1, y)
-    combine = cv2.add(img_x, img_y)  # mby uporab cv2.add()
+    combine = cv2.add(img_x, img_y)
     return combine
 
 
@@ -62,6 +59,8 @@ def canny2(slika, sp_prag, zg_prag):
     Cannyimage = cv2.Canny(slika, lower, upper)
 
     return Cannyimage
+
+# changes contrast alpha = contrast, beta = brightness
 
 
 def spremeni_kontrast(slika, alfa, beta):
