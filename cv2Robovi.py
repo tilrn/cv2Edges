@@ -62,12 +62,21 @@ def my_sobel(slika):
     x = np.array([[1, 0, -1], [2, 0, -2], [1, 0, -1]])
     y = np.array([[1, 2, 3], [0, 0, 0], [-1, -2, -1]])
     # uporaba ze obstojece funkcije
-    img_x2 = cv2.Sobel(slika, cv2.CV_8U, 1, 0, ksize=5)
-    img_y2 = cv2.Sobel(slika, cv2.CV_8U, 0, 1, ksize=5)
+    # img_x2 = cv2.Sobel(slika, cv2.CV_8U, 1, 0, ksize=5)
+    # img_y2 = cv2.Sobel(slika, cv2.CV_8U, 0, 1, ksize=5)
 
     img_x = cv2.filter2D(slika, -1, x)
     img_y = cv2.filter2D(slika, -1, y)
-    combine = img_x + img_y
-    combine2 = img_x2 + img_y2
-    combine = np.concatenate((combine, combine2), axis=1)
+    combine = img_x + img_y  # mby uporab cv2.add()
+    # combine2 = img_x2 + img_y2
+    # combine = np.concatenate((combine, combine2), axis=1)
     return combine
+
+
+def canny2(slika, sp_prag, zg_prag):
+    lower = sp_prag
+    upper = zg_prag
+
+    Cannyimage = cv2.Canny(slika, lower, upper)
+
+    return Cannyimage
