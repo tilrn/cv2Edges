@@ -19,10 +19,11 @@ roberts_cross_v = np.array([[1, 0], [0, -1]])
 roberts_cross_h = np.array([[0, 1], [-1, 0]])
 
 
-img2 = cv2.imread('Uvod/tijaImage.png', 1)
-img = cv2.imread('Uvod/natureSpot.png', 1)
+img2 = cv2.imread('slike/tijaImage.png', 1)
+img = cv2.imread('slike/natureSpot.png', 1)
 img2RGB = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
 img2RGB = cv2.cvtColor(img2RGB, cv2.COLOR_BGR2GRAY)
+img2RGB = cv2.GaussianBlur(img2RGB, (5, 5), 0)
 
 # img = cv2.imread('Uvod/test.png', 1)
 
@@ -67,7 +68,7 @@ def my_sobel(slika):
 
     img_x = cv2.filter2D(slika, -1, x)
     img_y = cv2.filter2D(slika, -1, y)
-    combine = img_x + img_y  # mby uporab cv2.add()
+    combine = cv2.add(img_x, img_y)  # mby uporab cv2.add()
     # combine2 = img_x2 + img_y2
     # combine = np.concatenate((combine, combine2), axis=1)
     return combine
@@ -94,7 +95,7 @@ def get():
     contrast2 = contrast.get()
     brightnes3 = int(brightnes2)
     contrast3 = int(contrast2)
-    contrastImage = spremeni_kontrast(img2RGB, 0.5, brightnes3)
+    contrastImage = spremeni_kontrast(img2RGB, contrast3 * 0.2, brightnes3)
 
     # my_Roberts
     myRoberts = my_roberts(contrastImage)
@@ -110,13 +111,13 @@ def get():
     cannyNormal = canny2(img2, 100, 100)
 
     # izpisi
-    # cv2.imshow("Normal Roberts", myRobertsNormal)
-    # cv2.imshow("tempered Roberts", myRoberts)
-    # cv2.imshow("Normal Prewitt", myPrewittNormal)
-    # cv2.imshow("tempered Prewitt", myPrewitt)
+    cv2.imshow("Normal Roberts", myRobertsNormal)
+    cv2.imshow("tempered Roberts", myRoberts)
+    cv2.imshow("Normal Prewitt", myPrewittNormal)
+    cv2.imshow("tempered Prewitt", myPrewitt)
 
-    # cv2.imshow("Normal Sobel", sobelNormal)
-    # cv2.imshow("Tempered Sobel", sobel)
+    cv2.imshow("Normal Sobel", sobelNormal)
+    cv2.imshow("Tempered Sobel", sobel)
 
     cv2.imshow("Normal Canny", cannyNormal)
     cv2.imshow("Tempered Canny", canny)
