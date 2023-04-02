@@ -39,3 +39,18 @@ def my_roberts(slika):
 
     combine = cv2.addWeighted(vertical, 0.5, horizontal, 0.5, 0)
     return combine * 3
+
+
+def my_prewitt(slika):
+
+    # img = cv2.cvtColor(slika, cv2.COLOR_BGR2GRAY)
+    # img = cv2.bilateralFilter(img, 9, 75, 75) #za blurr
+    # tta je obratna ? in zamenjat bi jih rabu
+    y = np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]])
+    x = np.array([[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]])  # sm jih zamenju
+
+    img_x = cv2.filter2D(slika, -1, x)
+    img_y = cv2.filter2D(slika, -1, y)
+
+    combine = np.concatenate((img_x, img_y), axis=1)
+    return combine * 3
