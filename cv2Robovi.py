@@ -87,3 +87,21 @@ def spremeni_kontrast(slika, alfa, beta):
     slika = cv2.multiply(slika, alfa)
     slika = cv2.add(slika, beta)
     return slika
+
+
+tink = tk.Tk()
+tink.title("Adjust settings")
+tink.configure(width=500, height=300)
+tink.configure(bg='lightgray')
+brightnes = DoubleVar()
+contrast = DoubleVar()
+scale = Scale(tink, from_=100, to=-100, variable=brightnes,
+              orient=HORIZONTAL, label="Brightnes")
+scale2 = Scale(tink, from_=20, to=0, variable=contrast,
+               orient=HORIZONTAL, label="Contrast")
+
+button = tk.Button(tink, text="send", width=20, command=get)
+scale.pack()
+scale2.pack()
+button.pack()
+tink.mainloop()
